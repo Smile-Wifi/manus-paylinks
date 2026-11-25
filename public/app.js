@@ -1,0 +1,4 @@
+const form = document.querySelector('#payment-form');
+const button = document.querySelector('#pay-button');
+const error = document.querySelector('#form-error');
+form?.addEventListener('submit', async event => { event.preventDefault(); error.hidden = true; button.disabled = true; button.querySelector('.button-label').textContent = 'Preparing checkout…'; try { const response = await fetch('/api/create-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form).entries())) }); const result = await response.json(); if (!response.ok || !result.ok) throw new Error(result.error || 'Unable to create payment'); location.assign(result.payment.checkout_url); } catch (e) { error.textContent = e.message; error.hidden = false; button.disabled = false; button.querySelector('.button-label').textContent = 'Continue to payment'; } });

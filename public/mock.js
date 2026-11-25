@@ -1,0 +1,1 @@
+const reference = new URLSearchParams(location.search).get('reference'); document.querySelector('#complete')?.addEventListener('click', async () => { const response = await fetch(`/api/mock/complete?reference=${encodeURIComponent(reference)}`, { method: 'POST' }); if (response.ok) location.assign(`/payment-result.html?reference=${encodeURIComponent(reference)}`); });

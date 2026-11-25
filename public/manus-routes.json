@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Payment checkout"},{"path":"/docs","title":"Gateway API docs"},{"path":"/admin","title":"Gateway CMS"},{"path":"/payment-result.html","title":"Payment status"},{"path":"/mock-checkout.html","title":"Test checkout"}]}
