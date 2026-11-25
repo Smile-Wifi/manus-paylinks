@@ -1,0 +1,3 @@
+﻿{
+  "rewrites": [{ "source": "/checkout", "destination": "/checkout.html" }, { "source": "/admin", "destination": "/admin.html" }]
+}

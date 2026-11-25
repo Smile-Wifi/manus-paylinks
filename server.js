@@ -1,4 +1,4 @@
-const http = require('node:http');
+﻿const http = require('node:http');
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -326,3 +326,4 @@ async function handler(req, res) {
   return text(res, 404, 'Not found');
 }
 http.createServer((req, res) => handler(req, res).catch(error => { console.error(error); json(res, 500, { ok: false, error: error.message }); })).listen(PORT, '0.0.0.0', () => console.log(`Payment gateway MANUAL listening on ${PORT} (payments=${payments.size})`));
+
