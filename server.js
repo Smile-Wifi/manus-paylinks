@@ -251,10 +251,10 @@ async function handler(req, res) {
   if (req.method === 'GET' && ['/health', '/_app/health'].includes(url.pathname)) return json(res, 200, { ok: true, service: 'payment-gateway-manual', mode: 'manual', payments: payments.size });
   if (req.method === 'GET' && url.pathname === '/') return serve(res, 'index.html', 'text/html; charset=utf-8');
   if (req.method === 'GET' && url.pathname === '/docs') return serve(res, 'docs.html', 'text/html; charset=utf-8');
-  if (req.method === 'GET' && url.pathname === '/admin') return serve(res, 'admin.html', 'text/html; charset=utf-8');
+  if (req.method === 'GET' && (url.pathname === '/admin' -or url.pathname === '/admin.html')) return serve(res, 'admin.html', 'text/html; charset=utf-8');
   if (req.method === 'GET' && url.pathname === '/payment-result.html') return serve(res, 'payment-result.html', 'text/html; charset=utf-8');
   if (req.method === 'GET' && url.pathname === '/mock-checkout.html') return serve(res, 'mock-checkout.html', 'text/html; charset=utf-8');
-  if (req.method === 'GET' && url.pathname === '/checkout.html') return serve(res, 'checkout.html', 'text/html; charset=utf-8');
+  if (req.method === 'GET' && (url.pathname === '/checkout.html' -or url.pathname === '/checkout')) return serve(res, 'checkout.html', 'text/html; charset=utf-8');
   if (req.method === 'GET' && url.pathname === '/styles.css') return serve(res, 'styles.css', 'text/css; charset=utf-8');
   if (req.method === 'GET' && url.pathname === '/app.js') return serve(res, 'app.js', 'application/javascript; charset=utf-8');
   if (req.method === 'GET' && url.pathname === '/config.js') return serve(res, 'config.js', 'application/javascript; charset=utf-8');
@@ -326,4 +326,5 @@ async function handler(req, res) {
   return text(res, 404, 'Not found');
 }
 http.createServer((req, res) => handler(req, res).catch(error => { console.error(error); json(res, 500, { ok: false, error: error.message }); })).listen(PORT, '0.0.0.0', () => console.log(`Payment gateway MANUAL listening on ${PORT} (payments=${payments.size})`));
+
 
